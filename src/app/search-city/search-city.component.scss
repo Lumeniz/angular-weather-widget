@@ -1,0 +1,18 @@
+.search-result {
+
+  max-height: 200px;
+  overflow: auto;
+  display: inline-block;
+
+  li {
+    height: 35px;
+  }
+
+  button {
+    float: right;
+  }
+}
+
+.search-city {
+  margin-top: 50px;
+}

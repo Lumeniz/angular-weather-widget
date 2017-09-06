@@ -1,0 +1,11 @@
+<div>
+    <ul *ngIf="myCities">
+        <li *ngFor="let city of myCities" (click)="setCurrentCity( city )">
+            {{city.name}}
+            <span (click)="removeMyCity( city.id, $event )">X</span>
+        </li>
+    </ul>
+
+
+    <h4 *ngIf="!myCities || !myCities.length"> No Cities</h4>
+</div>

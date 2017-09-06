@@ -8,7 +8,7 @@ export interface AddMyCitiesAction extends Action{
     city: City
 }
 
-export const AddMyCity: ActionCreator<AddMyCitiesAction> = ( cityArgs: City ) => {
+export const addMyCity: ActionCreator<AddMyCitiesAction> = ( cityArgs: City ) => {
     const defaults = {
         id: uuid(),
         name: '',
@@ -24,3 +24,29 @@ export const AddMyCity: ActionCreator<AddMyCitiesAction> = ( cityArgs: City ) =>
         city: city
     };
 }
+
+export const SET_CURRENT_CITY = '[City] Set Current';
+
+export interface SetCurrentCityAction extends Action {
+    city: City
+}
+
+export const setCurrentCity: ActionCreator<SetCurrentCityAction> =
+    ( city ) => ({
+        type: SET_CURRENT_CITY,
+        city: city
+    });
+
+
+export const REMOVE_MY_CITY = '[City] Remove from list of my cities';
+
+export interface RemoveMyCityAction extends Action {
+    city_id: string
+}
+
+export const removeMyCity: ActionCreator<RemoveMyCityAction> =
+    ( city_id ) => ({
+        type: REMOVE_MY_CITY,
+        city_id: city_id
+
+    });

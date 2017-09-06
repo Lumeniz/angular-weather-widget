@@ -1,0 +1,12 @@
+<div class="search-city">
+    <input type="text" (input)="searchCities($event)" [(ngModel)]="searchStr" placeholder="Enter city">
+
+    <div>
+        <ul class="search-result" *ngIf="searchResults">
+            <li *ngFor="let city of searchResults">{{city.name}}  <button (click)="addToMyCities( city )">Add</button></li>
+        </ul>
+
+    </div>
+
+    <h4 *ngIf="!searchResults || !searchResults.length">No Results</h4>
+</div>
