@@ -2,6 +2,9 @@ import { Action, ActionCreator } from "redux";
 import { City } from "../city/city.model";
 import { uuid } from "../util/uuid";
 
+/*
+ * Add city to MyCities List
+ * */
 export const ADD_MY_CITY = '[My Cities] Add';
 
 export interface AddMyCitiesAction extends Action{

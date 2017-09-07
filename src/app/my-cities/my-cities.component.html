@@ -1,4 +1,5 @@
 <div>
+    <h3>My cities</h3>
     <ul *ngIf="myCities">
         <li *ngFor="let city of myCities" (click)="setCurrentCity( city )">
             {{city.name}}
@@ -6,6 +7,5 @@
         </li>
     </ul>
 
-
-    <h4 *ngIf="!myCities || !myCities.length"> No Cities</h4>
+    <p *ngIf="!myCities || !myCities.length"> Search city and add to list</p>
 </div>

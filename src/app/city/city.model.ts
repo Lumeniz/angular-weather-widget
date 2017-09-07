@@ -7,7 +7,7 @@ import { Coord } from "./coord.model";
 export interface City{
     id: string;
     name: string;
-    aww_id: number;
+    awwId: number;
     country: string;
     coord: Coord;
 }

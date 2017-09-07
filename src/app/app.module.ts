@@ -8,19 +8,28 @@ import { WeatherComponent } from './weather/weather.component';
 import { appStoreProviders } from "./app.store";
 import { CityService } from "./city/city.service";
 import { FormsModule } from "@angular/forms";
+import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
+import { WeatherForecastService } from "./weather-forecast/weather-forecast.service";
+import { HttpModule } from "@angular/http";
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchCityComponent,
     MyCitiesComponent,
-    WeatherComponent
+    WeatherComponent,
+    WeatherForecastComponent
   ],
   imports: [
     BrowserModule,
-      FormsModule
+      FormsModule,
+      HttpModule
   ],
-  providers: [ appStoreProviders, CityService ],
+  providers: [
+      appStoreProviders,
+      CityService,
+      WeatherForecastService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

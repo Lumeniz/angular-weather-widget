@@ -1,12 +1,15 @@
 import { Reducer, combineReducers } from "redux";
 import { MyCitiesState, MyCitiesReducer } from "./my-cities/my-cities.reducer";
+import { WeatherForecastState, WeatherForecastReducer } from "./weather-forecast/weather-forecast.reducer";
 
 export interface AppState{
-    myCities: MyCitiesState;
+    cities: MyCitiesState;
+    weatherForecasts: WeatherForecastState;
 }
 
 const rootReducer: Reducer<AppState> = combineReducers<AppState>({
-    myCities: MyCitiesReducer,
+    cities: MyCitiesReducer,
+    weatherForecasts: WeatherForecastReducer
 })
 
 export default rootReducer;

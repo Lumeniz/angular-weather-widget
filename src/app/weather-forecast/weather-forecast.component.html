@@ -1,0 +1,7 @@
+<h3>Weather Forecast</h3>
+<p *ngIf="!city">Please select city</p>
+
+<div *ngIf="forecast">
+    {{ forecast.cityName }}
+    <p>Temp: {{forecast.forecast.main.temp | number:'.0-0' }}&#8451;</p>
+</div>

@@ -14,7 +14,9 @@ export class CityService {
         this.parseCities( citiesList.cities );
 
     }
-
+/*
+* Find city by name
+* */
     findCities( searchStr: string ){
 
         if ( !searchStr.trim() )
@@ -25,20 +27,24 @@ export class CityService {
         });
 
     }
-
+/*
+* Create list of cities with type City
+* */
     parseCities( citiesList: any ){
 
         const defaultCity: City = {
                 id: uuid(),
                 name: '',
-                aww_id: null,
+                awwId: null,
                 country: '',
                 coord: null
 
             };
 
+        //generate id for city with function uuid()
+        //external city id moving to aww_id
         let cities: City[] = citiesList.map( (city) => {
-            return Object.assign( {}, defaultCity, city, { id: uuid(), aww_id: city.id } );
+            return Object.assign( {}, defaultCity, city, { id: uuid(), awwId: city.id } );
         });
 
         this.cities = _.sortBy( cities, 'name' );

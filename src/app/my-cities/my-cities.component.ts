@@ -5,6 +5,7 @@ import * as Redux from 'redux';
 import { AppState } from "../app.reducer";
 import * as _ from 'lodash';
 import * as MyCitiesActions from '../my-cities/my-cities.actions';
+import { getMyCities } from "./my-cities.reducer";
 
 
 @Component( {
@@ -16,9 +17,13 @@ export class MyCitiesComponent implements OnInit {
     myCities: City[];
 
     constructor( @Inject( AppStore ) private store: Redux.Store<AppState> ){
+
+        //listening store for changes and then update our component
         this.store.subscribe( () =>{
-            this.updateComp();
+            if ( this.myCities != getMyCities( this.store.getState() ) )
+                this.updateComp();
         } );
+        //update component on startup
         this.updateComp();
     }
 
@@ -26,9 +31,8 @@ export class MyCitiesComponent implements OnInit {
     }
 
     updateComp(){
-
-        this.myCities = _.values( this.store.getState().myCities.myCities );
-
+        //get my cities from store
+        this.myCities = getMyCities( this.store.getState() ) ;
 
         console.log( this.myCities );
     }
@@ -40,6 +44,8 @@ export class MyCitiesComponent implements OnInit {
 
     removeMyCity( city_id, event ){
         this.store.dispatch( MyCitiesActions.removeMyCity( city_id ) );
+
+        //prevent click action from other parent elements in view
         event.preventDefault();
 
     }
