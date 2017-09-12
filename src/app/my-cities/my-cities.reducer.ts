@@ -14,7 +14,7 @@ export interface MyCitiesState{
     myCities: MyCitiesEntities;
 }
 
-const initialState: MyCitiesState = {
+export const initialState: MyCitiesState = {
     ids: [],
     currentCity: null,
     myCities: {}

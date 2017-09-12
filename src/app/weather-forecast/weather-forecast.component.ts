@@ -24,6 +24,8 @@ export class WeatherForecastComponent implements OnInit {
         this.store.subscribe( () =>{
             this.updateChecking( );
         } );
+
+        this.updateChecking( );
     }
 
     ngOnInit(){
@@ -34,14 +36,19 @@ export class WeatherForecastComponent implements OnInit {
         const state = this.store.getState();
         this.city =    state.cities.currentCity;
 
-        if ( state.weatherForecasts.ids.includes( this.city.id ))
-            this.forecast = state.weatherForecasts.forecasts[this.city.id];
-        else {
-            const forecast = this.wfService.getForecast( this.city.awwId )
-                .then( ( forecast )=>{
-                    this.forecast = forecast;
-                    this.store.dispatch( addForecast( forecast, this.city.id) );
-            } );
+        if ( this.city && this.city.id ){
+
+            if ( state.weatherForecasts.ids.includes( this.city.id ))
+                this.forecast = state.weatherForecasts.forecasts[this.city.id];
+            else {
+                const forecast = this.wfService.getForecast( this.city.awwId )
+                    .then( ( forecast )=>{
+                        this.forecast = forecast;
+                        this.store.dispatch( addForecast( forecast, this.city.id) );
+                } );
+            }
+        }else {
+            this.forecast = null;
         }
     }
 
@@ -49,9 +56,7 @@ export class WeatherForecastComponent implements OnInit {
 
         let citiesState = this.store.getState().cities;
 
-        if ( citiesState.currentCity && !this.city
-            || this.city && this.city.id != citiesState.currentCity.id
-        ){
+        if ( this.city !== citiesState.currentCity ){
             this.updateComp();
         }
 
