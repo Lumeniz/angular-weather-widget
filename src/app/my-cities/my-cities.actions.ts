@@ -1,6 +1,5 @@
 import { Action, ActionCreator } from "redux";
 import { City } from "../city/city.model";
-import { uuid } from "../util/uuid";
 
 /*
  * Add city to MyCities List
@@ -13,9 +12,8 @@ export interface AddMyCitiesAction extends Action{
 
 export const addMyCity: ActionCreator<AddMyCitiesAction> = ( cityArgs: City ) => {
     const defaults = {
-        id: uuid(),
+        id: 0,
         name: '',
-        aww_id: 0,
         country: '',
         coord: null
     }
@@ -44,7 +42,7 @@ export const setCurrentCity: ActionCreator<SetCurrentCityAction> =
 export const REMOVE_MY_CITY = '[City] Remove from list of my cities';
 
 export interface RemoveMyCityAction extends Action {
-    city_id: string
+    city_id: number
 }
 
 export const removeMyCity: ActionCreator<RemoveMyCityAction> =

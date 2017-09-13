@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { City } from "./city.model";
 import * as citiesList from '../city.ua.list';
-import { uuid } from "../util/uuid";
 import * as _ from "lodash";
 
 
@@ -33,18 +32,15 @@ export class CityService {
     parseCities( citiesList: any ){
 
         const defaultCity: City = {
-                id: uuid(),
+                id: 0,
                 name: '',
-                awwId: null,
                 country: '',
                 coord: null
 
             };
 
-        //generate id for city with function uuid()
-        //external city id moving to aww_id
         let cities: City[] = citiesList.map( (city) => {
-            return Object.assign( {}, defaultCity, city, { id: uuid(), awwId: city.id } );
+            return Object.assign( {}, defaultCity, city );
         });
 
         this.cities = _.sortBy( cities, 'name' );

@@ -9,7 +9,7 @@ export const ADD_FORECAST = '[Forecast] add new forecast';
 
 export interface AddWeatherForecastAction extends Action{
     forecast: WeatherForecast;
-    cityId: string;
+    cityId: number;
 }
 
 export const addForecast:ActionCreator<AddWeatherForecastAction> = ( forecast, cityId )=>{

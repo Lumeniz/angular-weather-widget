@@ -8,10 +8,10 @@ import { AddWeatherForecastAction } from "./weather-forecast.actions";
 
 
 export interface WeatherForecastEntities {
-    [id: string]: WeatherForecast;
+    [id: number]: WeatherForecast;
 }
 export interface WeatherForecastState {
-    ids: string[];
+    ids: number[];
     forecasts: WeatherForecastEntities;
 }
 

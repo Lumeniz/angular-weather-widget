@@ -41,7 +41,7 @@ export class WeatherForecastComponent implements OnInit {
             if ( state.weatherForecasts.ids.includes( this.city.id ))
                 this.forecast = state.weatherForecasts.forecasts[this.city.id];
             else {
-                const forecast = this.wfService.getForecast( this.city.awwId )
+                const forecast = this.wfService.getForecast( this.city.id )
                     .then( ( forecast )=>{
                         this.forecast = forecast;
                         this.store.dispatch( addForecast( forecast, this.city.id) );

@@ -1,11 +1,23 @@
-<div class="search-city">
-    <label for="city_search">Search city:</label>
-    <input type="text" id="city_search" (input)="searchCities($event)" [(ngModel)]="searchStr" placeholder="Enter city name">
+<div class="search-city row ">
+    <div class="form-inline">
 
-    <div>
-        <ul class="search-result" *ngIf="searchResults">
-            <li *ngFor="let city of searchResults">{{city.name}}  <button (click)="addToMyCities( city )">Add</button></li>
-        </ul>
+        <div class="control-group">
+
+            <label for="city_search" class="control-label search-label">
+
+                <span class="label">Search city:</span>
+
+                <input id="city_search" type="text" class="form-control" [(ngModel)]="searchStr"
+                       placeholder="Enter city name" [ngbTypeahead]="search" [resultFormatter]="formatter"
+                       [inputFormatter]="formatterInput" (selectItem)="selectCity($event)">
+
+                <span class="add-button-wrap">
+                    <button [@searchCitySelectedAnimation]="searchSelectedCity?'show':'hide'"
+                            class="add-button btn btn-primary" (click)="addToMyCities( )">Add</button>
+                </span>
+            </label>
+
+        </div>
     </div>
-
 </div>
+

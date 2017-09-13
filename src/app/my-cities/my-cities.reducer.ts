@@ -5,11 +5,11 @@ import * as _ from 'lodash';
 import { createSelector } from "reselect";
 
 export interface MyCitiesEntities{
-    [id: string]: City;
+    [id: number]: City;
 }
 
 export interface MyCitiesState{
-    ids: string[];
+    ids: number[];
     currentCity: City,
     myCities: MyCitiesEntities;
 }

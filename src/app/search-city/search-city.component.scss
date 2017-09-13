@@ -15,4 +15,38 @@
 
 .search-city {
   margin-top: 50px;
+
+  .form-inline {
+    width: 100%;
+    .control-group {
+      margin: auto;
+    }
+  }
+}
+
+.search-label {
+  margin-bottom: 20px;
+
+  .label {
+
+    font-size: 22px;
+    padding-right: 20px;
+  }
+  input {
+    width: 300px;
+  }
+}
+
+.add-button-wrap {
+
+  width: 100px;
+  text-align: right;
+}
+
+.add-button {
+  width: 75px;
+  opacity: 0;
+
+  -webkit-transition: top 1s ease-out 0.5s;
+  transition: top 1s ease-out 0.5s;
 }

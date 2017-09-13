@@ -3,6 +3,7 @@ import { Store, createStore, compose, applyMiddleware } from "redux";
 import { AppState, default as reducer } from "./app.reducer";
 import { MyCitiesState, initialState as initialStateMyCities } from "./my-cities/my-cities.reducer";
 import { initialState as initialStateWeatherForecast } from "./weather-forecast/weather-forecast.reducer";
+import * as MyCitiesActions from './my-cities/my-cities.actions';
 
 export const AppStore = new InjectionToken( 'App.store' );
 
@@ -28,10 +29,20 @@ const getMyCitiesStateFromStorage = function (): MyCitiesState{
 
 
 function saveMyCitiesState( { getState } ){
+
+    const actionsForSaveCities = [
+        MyCitiesActions.ADD_MY_CITY,
+        MyCitiesActions.REMOVE_MY_CITY,
+        MyCitiesActions.SET_CURRENT_CITY
+    ];
+
     return next => action =>{
+
         let returnValue = next( action );
 
-        saveMyCitiesStateToStorage( getState().cities );
+        if( actionsForSaveCities.includes( action.type ) ){
+            saveMyCitiesStateToStorage( getState().cities );
+        }
 
         return returnValue;
     }
