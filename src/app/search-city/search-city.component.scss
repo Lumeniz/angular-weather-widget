@@ -25,7 +25,7 @@
 }
 
 .search-label {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   .label {
 
@@ -49,4 +49,8 @@
 
   -webkit-transition: top 1s ease-out 0.5s;
   transition: top 1s ease-out 0.5s;
+}
+
+.alert-message-cont {
+  height: 50px;
 }

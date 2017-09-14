@@ -17,6 +17,11 @@
                 </span>
             </label>
 
+            <div class="alert-message-cont">
+                <ngb-alert class="alert-message" [class.alert-visible]="alertMsg" type="danger"
+                           (close)="alertMsg = null">{{ alertMsg }}
+                </ngb-alert>
+            </div>
         </div>
     </div>
 </div>

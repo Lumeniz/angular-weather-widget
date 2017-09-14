@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+.alert-message .alert {
+    opacity: 0;
+    -webkit-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+.alert-message.alert-visible .alert {
+    opacity: 1;
+}

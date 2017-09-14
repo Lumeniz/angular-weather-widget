@@ -3,6 +3,7 @@ import * as MyCitiesActions from './my-cities.actions';
 import { Action } from "redux";
 import * as _ from 'lodash';
 import { createSelector } from "reselect";
+import { AppState } from "../app.reducer";
 
 export interface MyCitiesEntities{
     [id: number]: City;
@@ -100,3 +101,12 @@ export const getMyCities = createSelector(
         return _.values( myCitiesEntities );
     }
 );
+
+export const isCityInMyCities = function( state: AppState, city: City):boolean{
+
+    //get ids of all cities in MyCities list
+    const myCitiesIds = getCitiesState( state ).ids;
+    //return result of checking if city.id in list
+    return myCitiesIds.includes( city.id );
+
+};

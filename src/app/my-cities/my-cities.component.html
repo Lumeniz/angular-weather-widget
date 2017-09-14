@@ -1,9 +1,12 @@
 <div>
-    <h3>My cities</h3>
-    <ul *ngIf="myCities">
+    <h4>My cities</h4>
+    <ul *ngIf="myCities" class="myCitiesList">
         <li *ngFor="let city of myCities" (click)="setCurrentCity( city )">
-            {{city.name}}
-            <span (click)="removeMyCity( city.id, $event )">X</span>
+            <span class="city-name">{{city.name}}</span>
+            <button type="button" class="close" aria-label="Close" (click)="removeMyCity( city.id, $event )"
+                    title="Remove City" >
+                <span aria-hidden="true">&times;</span>
+            </button>
         </li>
     </ul>
 
