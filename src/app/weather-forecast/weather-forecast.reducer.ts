@@ -22,17 +22,21 @@ export const initialState: WeatherForecastState = {
 }
 
 export const WeatherForecastReducer = function (
+
     state: WeatherForecastState = initialState, action: Action ): WeatherForecastState{
+
     switch ( action.type ) {
         case WeatherForecastActions.ADD_FORECAST:
 
             const cityId = (<AddWeatherForecastAction>action).cityId;
             const forecast = (<AddWeatherForecastAction>action).forecast;
 
+            // check if city id already in list of weather forecasts
             if ( state.ids.includes( cityId ) ) {
                 return state;
             }
 
+            // immutable adding new cityId and Forecast to State
             return {
                 ids: [...state.ids, cityId],
                 forecasts: Object.assign( {}, state.forecasts, { [cityId]: forecast } )
@@ -42,13 +46,16 @@ export const WeatherForecastReducer = function (
 
             const remCityId = (<AddWeatherForecastAction>action).cityId;
 
+            // creating immutable variables
             let newIds = [...state.ids ];
             let newForecasts = Object.assign( {}, state.forecasts );
 
+            // remove id from list
             newIds.splice( newIds.indexOf( remCityId ), 1 );
 
             return {
                 ids: newIds,
+                // removing forecast with key remCityId from list of forecasts
                 forecasts: _.omit( newForecasts, remCityId )
             };
 

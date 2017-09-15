@@ -33,6 +33,7 @@ export const MyCitiesReducer = function( state: MyCitiesState = initialState, ac
                 return state;
             }
 
+            //immutable adding new city to State
             return {
                 ids: [ ...state.ids, city.id ],
                 currentCity: Object.assign({}, city),
@@ -42,6 +43,7 @@ export const MyCitiesReducer = function( state: MyCitiesState = initialState, ac
 
             };
 
+        //    set city as currently selected
         case MyCitiesActions.SET_CURRENT_CITY:
             const newCurCity: City = (<MyCitiesActions.SetCurrentCityAction>action).city;
 
@@ -85,12 +87,16 @@ export const MyCitiesReducer = function( state: MyCitiesState = initialState, ac
     }
 }
 
-//selectors for state
+/*
+* selectors for state
+* */
+
+//get cities state
 export const getCitiesState = ( state ): MyCitiesState => state.cities;
+
 
 export const getMyCitiesEntities = createSelector(
     getCitiesState,
-
     ( state: MyCitiesState ) => state.myCities
 
 );
@@ -103,7 +109,6 @@ export const getMyCities = createSelector(
 );
 
 export const isCityInMyCities = function( state: AppState, city: City):boolean{
-
     //get ids of all cities in MyCities list
     const myCitiesIds = getCitiesState( state ).ids;
     //return result of checking if city.id in list

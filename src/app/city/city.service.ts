@@ -9,7 +9,7 @@ export class CityService {
     cities: City[] = [];
 
     constructor(){
-
+        //getting cities from local file
         this.parseCities( citiesList.cities );
 
     }
@@ -39,6 +39,7 @@ export class CityService {
 
             };
 
+        //make immutable variable
         let cities: City[] = citiesList.map( (city) => {
             return Object.assign( {}, defaultCity, city );
         });

@@ -22,6 +22,7 @@ export class WeatherForecastComponent implements OnInit {
         @Inject( AppStore ) private store: Redux.Store<AppState>
     ){
 
+        //Immutable setting value
         this.weather = Object.assign( {}, WeatherForecastInitial);
 
         this.store.subscribe( () =>{
@@ -48,7 +49,6 @@ export class WeatherForecastComponent implements OnInit {
 
             //if no, getting from external service
             }else {
-
                 this.wfService.getWeatherForecast( this.city.id ).subscribe(
                     ( weatherForecast:WeatherForecast ) => {
 

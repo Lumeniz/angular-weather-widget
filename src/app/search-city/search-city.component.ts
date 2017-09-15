@@ -18,12 +18,15 @@ import { isCityInMyCities } from "../my-cities/my-cities.reducer";
     templateUrl: './search-city.component.html',
     styleUrls: ['./search-city.component.scss'],
     animations: [
+        //animation for button Add
         trigger( 'searchCitySelectedAnimation', [
             state( 'hide', style( { opacity: 0 } ) ),
             state( 'show', style( { opacity: 1 } ) ),
             transition( '*=>hide', animate( '0.5s ease-out' ) ),
             transition( '*=>show', animate( '0.5s ease-in' ) )
         ] ),
+
+        //animation for Alert message
         trigger( 'alertAnimation', [
             state( 'hide', style( { opacity: 0 } ) ),
             state( 'show', style( { opacity: 1 } ) ),
@@ -48,16 +51,26 @@ export class SearchCityComponent implements OnInit {
     ngOnInit(){
     }
 
+
+    /*
+    * Component ngbTypeahead
+    * */
+
+    //change returned value for result of search
     formatter = ( result: City ) => result.name;
 
+    //change returned value for input element
     formatterInput = ( result: City ) => result.name;
 
+    //action when clicking to item in search results list
     selectCity = ( result ) =>{
         this.searchSelectedCity = result.item;
     };
 
+    //action for ng-bootstrap component ngbTypeahead ( search input )
     search = ( text$: Observable<string> ) =>
         text$
+            //delay before fire action
             .debounceTime( 200 )
             .distinctUntilChanged()
             .map( term =>{
@@ -66,13 +79,21 @@ export class SearchCityComponent implements OnInit {
                     : this.cityService.findCities( term ).slice( 0, 10 )
     } );
 
+    /*
+    * End component ngbTypeahead
+    * */
+
+    //action when clicking on button add
     addToMyCities(){
 
+        //check if this city already in list
         if ( !isCityInMyCities( this.store.getState(), this.searchSelectedCity  ) )
+            //if no, then add city to MyCities in Store
             this.store.dispatch( MyCitiesActions.addMyCity( this.searchSelectedCity ) );
         else
             this.alertMsg = this.alertMessages.CITY_ALREADY_ADDED;
 
+        //reset input element and temp variable
         this.searchSelectedCity = null;
         this.searchStr = '';
 
