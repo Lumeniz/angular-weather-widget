@@ -1,7 +1,7 @@
 <div>
     <h4 class="text-center">My cities</h4>
     <ul *ngIf="myCities" class="myCitiesList">
-        <li *ngFor="let city of myCities" (click)="setCurrentCity( city )">
+        <li *ngFor="let city of myCities" (click)="setCurrentCity( city )" [class.selected]="city.id == currentCityId">
             <span class="city-name">{{city.name}}</span>
             <button type="button" class="close" aria-label="Close" (click)="removeMyCity( city.id, $event )"
                     title="Remove City" >

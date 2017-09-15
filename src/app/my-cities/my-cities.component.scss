@@ -18,6 +18,11 @@ li {
       border-bottom: 0;
     }
 
+    &.selected{
+      background: #999;
+    }
+
+
     .city-name{
       width: 100%;
       margin-right: -30px;
@@ -27,6 +32,7 @@ li {
     .close{
       cursor: pointer;
     }
+
     button{
       line-height: 18px;
     }
