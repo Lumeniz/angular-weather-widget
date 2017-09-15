@@ -3,8 +3,8 @@ import { City } from "../city/city.model";
 import { AppStore } from "../app.store";
 import * as Redux from 'redux';
 import { AppState } from "../app.reducer";
-import * as _ from 'lodash';
 import * as MyCitiesActions from '../my-cities/my-cities.actions';
+import * as WeatherForecastActions from '../weather-forecast/weather-forecast.actions';
 import { getMyCities } from "./my-cities.reducer";
 
 
@@ -30,6 +30,7 @@ export class MyCitiesComponent implements OnInit {
     ngOnInit(){
     }
 
+
     updateComp(){
         //get my cities from store
         this.myCities = getMyCities( this.store.getState() ) ;
@@ -44,6 +45,7 @@ export class MyCitiesComponent implements OnInit {
 
     removeMyCity( city_id, event ){
         this.store.dispatch( MyCitiesActions.removeMyCity( city_id ) );
+        this.store.dispatch( WeatherForecastActions.removeForecast( city_id ) );
 
         //prevent click action from other parent elements in view
         event.preventDefault();

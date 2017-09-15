@@ -1,7 +1,61 @@
-<h3>Weather Forecast</h3>
+<h4>Weather Forecast</h4>
+<p class="text-center" *ngIf="weather.current">
+    <b>{{ weather.current.name }}({{ weather.current.sys.country }})</b>
+</p>
 <p *ngIf="!city">Please select city</p>
 
-<div *ngIf="forecast">
-    {{ forecast.cityName }}
-    <p>Temp: {{forecast.forecast.main.temp | number:'.0-0' }}&#8451;</p>
+<div class="row weather-container">
+    <table class="table table-sm" *ngIf="weather.forecast && weather.current">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Current</th>
+            <th colspan="9">Forecast</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td ></td>
+            <td >
+                    {{ secToMilisec( weather.current.dt ) | date:'dd EEE'}}<br>
+                    {{ secToMilisec( weather.current.dt ) | date:'H:mm' }}
+            </td>
+            <td *ngFor="let daily of weather.forecast.list" >
+                    {{ secToMilisec( daily.dt ) | date:'dd EEE'}}<br>
+                    {{ secToMilisec( daily.dt ) | date:'H:mm' }}
+            </td>
+        </tr>
+        <tr>
+            <td >Temp: &#8451;</td>
+            <td>{{weather.current.main.temp | number:'.0-0' }}</td>
+            <td *ngFor="let daily of weather.forecast.list" >
+                {{ daily.main.temp | number:'.0-0' }}
+            </td>
+        </tr>
+        <tr>
+            <td >Wind: m/s</td>
+            <td>{{weather.current.wind.speed | number:'.0-0' }}</td>
+            <td *ngFor="let daily of weather.forecast.list" >
+                {{ daily.wind.speed | number:'.0-0' }}
+            </td>
+        </tr>
+        <tr>
+            <td >Humidity: %</td>
+            <td>{{weather.current.main.humidity | number:'.0-0' }}</td>
+            <td *ngFor="let daily of weather.forecast.list" >
+                {{ daily.main.humidity | number:'.0-0' }}
+            </td>
+        </tr>
+        <tr>
+            <td >Pressure: hPa</td>
+            <td>{{weather.current.main.pressure | number:'.0-0' }}</td>
+            <td *ngFor="let daily of weather.forecast.list" >
+                {{ daily.main.pressure | number:'.0-0' }}
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+
 </div>

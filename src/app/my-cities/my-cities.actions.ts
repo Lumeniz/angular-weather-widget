@@ -25,7 +25,9 @@ export const addMyCity: ActionCreator<AddMyCitiesAction> = ( cityArgs: City ) =>
         city: city
     };
 }
-
+/*
+* Set city as current
+* */
 export const SET_CURRENT_CITY = '[City] Set Current';
 
 export interface SetCurrentCityAction extends Action {
@@ -38,7 +40,9 @@ export const setCurrentCity: ActionCreator<SetCurrentCityAction> =
         city: city
     });
 
-
+/*
+* Remove city from list
+* */
 export const REMOVE_MY_CITY = '[City] Remove from list of my cities';
 
 export interface RemoveMyCityAction extends Action {

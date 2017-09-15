@@ -5,6 +5,7 @@ import { WeatherForecast } from "./weather-forecast.model";
 import { Action } from "redux";
 import * as WeatherForecastActions from './weather-forecast.actions';
 import { AddWeatherForecastAction } from "./weather-forecast.actions";
+import * as _ from 'lodash';
 
 
 export interface WeatherForecastEntities {
@@ -36,6 +37,22 @@ export const WeatherForecastReducer = function (
                 ids: [...state.ids, cityId],
                 forecasts: Object.assign( {}, state.forecasts, { [cityId]: forecast } )
             };
+
+        case WeatherForecastActions.REMOVE_FORECAST:
+
+            const remCityId = (<AddWeatherForecastAction>action).cityId;
+
+            let newIds = [...state.ids ];
+            let newForecasts = Object.assign( {}, state.forecasts );
+
+            newIds.splice( newIds.indexOf( remCityId ), 1 );
+
+            return {
+                ids: newIds,
+                forecasts: _.omit( newForecasts, remCityId )
+            };
+
+
         default:
             return state;
     }

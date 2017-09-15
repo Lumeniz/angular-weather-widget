@@ -27,5 +27,14 @@ li {
     .close{
       cursor: pointer;
     }
+    button{
+      line-height: 18px;
+    }
   }
+}
+
+h4{
+  margin-top: 35px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 13px;
 }
