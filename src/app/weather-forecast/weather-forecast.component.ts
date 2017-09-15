@@ -6,6 +6,7 @@ import { AppState } from "../app.reducer";
 import * as Redux from 'redux';
 import { WeatherForecastService } from "./weather-forecast.service";
 import { addForecast } from "./weather-forecast.actions";
+import { AWW_CONFIG } from '../config';
 
 @Component( {
     selector: 'app-weather-forecast',
@@ -80,6 +81,10 @@ export class WeatherForecastComponent implements OnInit {
 
     secToMilisec( seconds ){
         return seconds* 1000;
+    }
+
+    iconUrl( iconName : string) {
+        return AWW_CONFIG.iconsUrl+iconName+'.png';
     }
 
 }

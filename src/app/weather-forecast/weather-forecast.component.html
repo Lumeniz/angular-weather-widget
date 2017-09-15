@@ -26,6 +26,19 @@
             </td>
         </tr>
         <tr>
+            <td ></td>
+            <td>
+                <img src="{{ iconUrl( weather.current.weather[0].icon ) }}"
+                     alt="{{ weather.current.weather[0].description }}"
+                     title="{{ weather.current.weather[0].description }}">
+            </td>
+            <td *ngFor="let daily of weather.forecast.list" >
+                <img src="{{ iconUrl( daily.weather[0].icon ) }}"
+                     alt="{{ daily.weather[0].description }}"
+                     title="{{ daily.weather[0].description }}">
+            </td>
+        </tr>
+        <tr>
             <td >Temp: &#8451;</td>
             <td>{{weather.current.main.temp | number:'.0-0' }}</td>
             <td *ngFor="let daily of weather.forecast.list" >
