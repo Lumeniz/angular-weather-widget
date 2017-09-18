@@ -16,6 +16,7 @@ import { getMyCities, getMyCitiesEntities, getCitiesState } from "./my-cities.re
 export class MyCitiesComponent implements OnInit {
     myCities: City[];
     currentCityId: number;
+    showLoadingSpinner: boolean;
 
     constructor( @Inject( AppStore ) private store: Redux.Store<AppState> ){
 

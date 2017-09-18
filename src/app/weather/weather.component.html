@@ -4,10 +4,10 @@
 
     <div class="row">
         <div class="col-md-3">
-            <app-my-cities></app-my-cities>
+            <app-my-cities #myCitiesComp ></app-my-cities>
         </div>
         <div class="col-md-9">
-            <app-weather-forecast></app-weather-forecast>
+            <app-weather-forecast (loadingWeather)="myCitiesComp.showLoadingSpinner=$event"></app-weather-forecast>
         </div>
     </div>
 </div>

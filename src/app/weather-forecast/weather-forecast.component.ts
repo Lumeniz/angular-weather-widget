@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { City } from "../city/city.model";
 import { WeatherForecast, WeatherForecastInitial } from "./weather-forecast.model";
 import { AppStore } from "../app.store";
@@ -16,6 +16,7 @@ import { AWW_CONFIG } from '../config';
 export class WeatherForecastComponent implements OnInit {
     city: City;
     weather: WeatherForecast;
+    @Output() loadingWeather: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(
         private wfService: WeatherForecastService,
@@ -47,8 +48,12 @@ export class WeatherForecastComponent implements OnInit {
             if ( state.weatherForecasts.ids.includes( this.city.id )) {
                 this.weather = state.weatherForecasts.forecasts[this.city.id];
 
-            //if no, getting from external service
+            // if no, getting from external service
             }else {
+
+                // show loading spinner
+                this.loadingWeather.emit( true );
+
                 this.wfService.getWeatherForecast( this.city.id ).subscribe(
                     ( weatherForecast:WeatherForecast ) => {
 
@@ -57,6 +62,10 @@ export class WeatherForecastComponent implements OnInit {
 
                         //call action that adding forecast to Store
                         this.store.dispatch( addForecast( this.weather, this.city.id) );
+
+                        // hide loading spinner
+                        this.loadingWeather.emit( false );
+
                     }
                 );
             }

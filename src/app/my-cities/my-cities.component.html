@@ -3,6 +3,7 @@
     <ul *ngIf="myCities" class="myCitiesList">
         <li *ngFor="let city of myCities" (click)="setCurrentCity( city )" [class.selected]="city.id == currentCityId">
             <span class="city-name">{{city.name}}</span>
+            <img src="/assets/giphy.gif" alt="Please wait data is loading" class="loading-gif" *ngIf="city.id == currentCityId && showLoadingSpinner">
             <button type="button" class="close" aria-label="Close" (click)="removeMyCity( city.id, $event )"
                     title="Remove City" >
                 <span aria-hidden="true">&times;</span>
